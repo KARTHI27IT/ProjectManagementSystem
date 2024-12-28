@@ -34,7 +34,7 @@ mongoose.connect("mongodb+srv://karthikeyan2207:karthi@projectmanagementsystem.m
     console.log("error:", err);
   });
 
-app.get('/api/admin/details', async (req, res) => {
+app.get('/admin/details', async (req, res) => {
   const { email } = req.query;
 
   try {
@@ -52,7 +52,7 @@ app.get('/api/admin/details', async (req, res) => {
   }
 });
 
-app.get('/api/employee/details', async (req, res) => {
+app.get('/employee/details', async (req, res) => {
   const { email } = req.query;
 
   try {
