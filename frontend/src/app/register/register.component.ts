@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { audit } from 'rxjs';
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -15,10 +17,11 @@ export class RegisterComponent {
   confirmPassword: string = '';
   phoneno: string = ''; // Changed to string for better validation
   loading: boolean = false; // For UX enhancements
-
-  constructor(private http: HttpClient, private router: Router) {}
+  url:String="";
+  constructor(private http: HttpClient, private router: Router,public authService:AuthService) {}
 
   register() {
+    this.url = this.authService.apiUrl;
     // Basic client-side validations
     if (!this.name || !this.email || !this.password || !this.confirmPassword || !this.phoneno) {
       alert('All fields are required!');
@@ -43,7 +46,7 @@ export class RegisterComponent {
     };
 
     this.http.post<{status:boolean,message:String}>(
-      'http://localhost:3000/user/create',
+      `${this.url}:3000/user/create`,
       userPayload
     ).subscribe(
       (resultData) => {

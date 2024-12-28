@@ -20,7 +20,7 @@ export class EditProjectComponent implements OnInit {
   project_id: String = '';
   project_status: String = '';
   project: any;
-
+url:String="";
   private route = inject(ActivatedRoute);
 
   constructor(
@@ -30,6 +30,7 @@ export class EditProjectComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.url = this.authService.apiUrl;
     this.route.params.subscribe((params) => {
       this.project_id = params['id'];
     });
@@ -47,7 +48,7 @@ export class EditProjectComponent implements OnInit {
     };
     this.http
       .post<{ status: boolean; project: any }>(
-        'http://localhost:3000/user/SingleProject',
+        `${this.url}/user/SingleProject`,
         PROJECT_ID
       )
       .subscribe({
@@ -90,7 +91,7 @@ export class EditProjectComponent implements OnInit {
 
     this.http
       .put<{ status: boolean; message: string; project: any }>(
-        'http://localhost:3000/user/EditProject',
+        `${this.url}/user/EditProject`,
         projectDetails
       )
       .subscribe(

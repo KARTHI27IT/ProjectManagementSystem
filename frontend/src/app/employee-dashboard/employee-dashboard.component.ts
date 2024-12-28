@@ -19,6 +19,7 @@ export class EmployeeDashboardComponent  {
   taskPercentages:any;
   taskNames :any;
   chart:any;
+  url:String="";
   constructor(
     private http: HttpClient,
     private authService:AuthService,
@@ -26,6 +27,7 @@ export class EmployeeDashboardComponent  {
   ) {}
 
   ngOnInit(): void {
+this.url = this.authService.apiUrl;
     if (!this.authService.isLoggedIn()) {
       alert('You must be logged in to access the dashboard!');
       this.router.navigate(['/login']);
@@ -63,7 +65,7 @@ export class EmployeeDashboardComponent  {
   getTasksDetails(): void {
     this.http
       .post<{ status: boolean; tasks: any, message: string }>(
-        'http://localhost:3000/user/getTasks',
+        `${this.url}/user/getTasks`,
         this.taskIds
       )
       .subscribe({

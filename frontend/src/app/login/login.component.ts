@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import Swal from "sweetalert2";
+import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,10 +16,14 @@ export class LoginComponent {
   employees=[];
   projects=[];
   isEmployee:boolean=true;
+  url:String="";
 
-  constructor(private http: HttpClient, private router: Router) {}
-
+  constructor(private http: HttpClient, private router: Router,public authService:AuthService) {}
+  // ngOnInit(){
+  //   this.url = this.authService.apiUrl;
+  // }
   login() {
+    this.url = this.authService.apiUrl;
     // Basic field validation
     if (!this.email || !this.password) {
         alert('All fields are required!');
@@ -43,7 +48,7 @@ export class LoginComponent {
             phoneno: number; 
             isEmployee: boolean; 
         }; 
-    }>('http://localhost:3000/user/login', loginPayload)
+    }>(`${this.url}/user/login`, loginPayload)
     .subscribe(
         (resultData) => {
             if (resultData.status) {

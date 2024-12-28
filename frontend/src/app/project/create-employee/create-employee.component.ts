@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-create-employee',
@@ -12,17 +13,18 @@ import Swal from 'sweetalert2';
 })
 export class CreateEmployeeComponent {
 
-  constructor(public http:HttpClient,public router:Router){}
+  constructor(public http:HttpClient,public router:Router,public authService:AuthService){}
   adminEmail:String="";
   empName:string="";
   empEmail:string="";
   empPassword:string="";
   empConfirmPassword:string="";
   empPhoneno:number=0;
-
+  url:String="";
 
   registerEmp(){
     debugger;
+    this.url = this.authService.apiUrl;
     this.adminEmail = localStorage.getItem('userEmail') || '';
     if (!this.empName || !this.empEmail || !this.empPassword || !this.empConfirmPassword) {
       alert('All fields are required!');
@@ -41,7 +43,7 @@ export class CreateEmployeeComponent {
       empPhoneno: this.empPhoneno,
     };
     this.http.post<{message:String}>(
-      'http://localhost:3000/user/createEmp',
+      `${this.url}/user/createEmp`,
       userPayload
     ).subscribe(
       (resultData) => {

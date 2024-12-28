@@ -15,12 +15,14 @@ export class EmployeeFilesComponent implements OnInit {
   files: any[] = [];
   adminDetails:any;
   isEmployee:boolean=false;
+  url:String="";
   constructor(
     public http: HttpClient,
     public authService: AuthService
   ) {}
 
   ngOnInit(): void {
+    this.url = this.authService.apiUrl;
     const isEmployee = localStorage.getItem('isEmployee') || '';
     if (isEmployee === 'true') {
       this.isEmployee = true;
@@ -47,7 +49,7 @@ export class EmployeeFilesComponent implements OnInit {
   getAdminFiles(){
     const employeeIds = this.adminDetails.employees;
     console.log("Employee:",employeeIds);
-    this.http.post<{ status: boolean, message: string, files: any }>("http://localhost:3000/admin/getAllFiles", employeeIds)
+    this.http.post<{ status: boolean, message: string, files: any }>(`${this.url}/getAllFiles`, employeeIds)
     .subscribe(
       (resultData) => {
       if (resultData.status) {
@@ -73,7 +75,7 @@ export class EmployeeFilesComponent implements OnInit {
       empEmail: this.employeeEmail
     };
 
-    this.http.post<{ status: boolean, message: string, files: any }>("http://localhost:3000/employee/getAllFiles", employeeDetails)
+    this.http.post<{ status: boolean, message: string, files: any }>(`${this.url}/employee/getAllFiles`, employeeDetails)
       .subscribe((resultData) => {
         if (resultData.status) {
           console.log(resultData.message);
@@ -84,7 +86,7 @@ export class EmployeeFilesComponent implements OnInit {
   }
 
   downloadFile(filePath: string, fileName: string) {
-    const url = `http://localhost:3000/download/${filePath}`;
+    const url = `${this.url}/download/${filePath}`;
     this.http.get(url, { responseType: 'blob' }).subscribe(
       (response) => {
         // Create a link element to trigger the download
@@ -111,7 +113,7 @@ export class EmployeeFilesComponent implements OnInit {
       task_id:file.task_id
     }
     console.log("file:",fileDetails);
-    const url = 'http://localhost:3000/employee/deleteFile';
+    const url = `${this.url}/employee/deleteFile`;
   
     this.http.post<{ status: boolean, message: string }>(url, fileDetails).subscribe(
       (response) => {
@@ -130,6 +132,6 @@ export class EmployeeFilesComponent implements OnInit {
   }
   
   getFileUrl(filePath: string): string {
-    return `http://localhost:3000/${filePath}`;
+    return `${this.url}/${filePath}`;
   }
 }

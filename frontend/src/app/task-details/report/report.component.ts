@@ -37,10 +37,12 @@ export class ReportComponent implements OnInit {
   employeeDetails: any;
   employeeEmail: string | null = '';
   private route = inject(ActivatedRoute);
+  url:String="";
 
   constructor(public http: HttpClient, public authService: AuthService, public router: Router) {}
 
   ngOnInit() {
+    this.url = this.authService.apiUrl;
     this.route.params.subscribe((params) => {
       this.task_id = params['id'];
     });
@@ -85,7 +87,7 @@ export class ReportComponent implements OnInit {
     };
 
     this.http.post<{ status: boolean; message: string; task: any }>(
-      'http://localhost:3000/user/SingleTask',
+      `${this.url}/user/SingleTask`,
       TASK_ID
     ).subscribe(
       (resultData) => {
@@ -108,7 +110,7 @@ export class ReportComponent implements OnInit {
 
   SendEmail() {
     this.http.post<{ status: boolean; message: string }>(
-      "http://localhost:3000/user/sendEmail",
+      `${this.url}/user/sendEmail`,
       this.form
     ).subscribe(
       (resultData) => {

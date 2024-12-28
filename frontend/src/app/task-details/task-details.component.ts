@@ -19,7 +19,8 @@ export class TaskDetailsComponent {
 task_start:string="";
 task_end:string="";
 task_status:String="";
-attachments: File | null = null
+attachments: File | null = null;
+url:String="";
 
   constructor(public http: HttpClient,public authService:AuthService,public router:Router) {}
 
@@ -33,6 +34,7 @@ attachments: File | null = null
   }
 
   ngOnInit() {
+    this.url = this.authService.apiUrl;
     this.route.params.subscribe((params) => {
       this.task_id = params['id'];
     });
@@ -93,7 +95,7 @@ attachments: File | null = null
     };
     this.http
       .post<{ status: boolean; message: string; task: any }>(
-        'http://localhost:3000/user/SingleTask',
+        `${this.url}/user/SingleTask`,
         TASK_ID
       )
       .subscribe(
@@ -155,7 +157,7 @@ attachments: File | null = null
   
     this.http
       .put<{ status: boolean; message: string }>(
-        'http://localhost:3000/employee/updateStatus',
+        `${this.url}/employee/updateStatus`,
         formData
       )
       .subscribe((resultData) => {

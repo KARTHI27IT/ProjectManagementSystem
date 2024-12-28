@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/api'; 
-
+  
+public apiUrl = 'https://projectmanagementsystem-tpf6.onrender.com'; 
   constructor(private http: HttpClient,public router:Router) {}
   adminEmail:String="";
   isLoggedIn(): boolean {

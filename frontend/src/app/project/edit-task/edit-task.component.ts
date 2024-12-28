@@ -20,7 +20,7 @@ export class EditTaskComponent implements OnInit {
   task_assigned_to:String="";
   task_id:String="";
   task:any;
-
+  url:String="";
   adminEmail: string | null = '';
   adminDetails:any;
   employees:any;
@@ -28,7 +28,7 @@ export class EditTaskComponent implements OnInit {
 
   private route = inject(ActivatedRoute);
   ngOnInit(){
-   
+    this.url = this.authService.apiUrl;
     this.route.params.subscribe((params)=>{
       this.task_id = params["id"];
     });
@@ -58,7 +58,7 @@ export class EditTaskComponent implements OnInit {
           console.log("Employee Ids:",this.employeeIds);
 
           this.http
-          .post<{ status: boolean; employees: any[] }>('http://localhost:3000/user/employees', {
+          .post<{ status: boolean; employees: any[] }>(`${this.url}/user/employees`, {
           employeeIds: this.employeeIds,
           })
         .subscribe({
@@ -89,7 +89,7 @@ export class EditTaskComponent implements OnInit {
     const TASK_ID={
       task_id:this.task_id
     }
-    this.http.post<{status:boolean,message:String,task:any}>('http://localhost:3000/user/SingleTask',TASK_ID)
+    this.http.post<{status:boolean,message:String,task:any}>(`${this.url}/user/SingleTask`,TASK_ID)
     .subscribe((resultData)=>{
       if(resultData.status){
         this.task=resultData.task[0];
@@ -109,7 +109,7 @@ export class EditTaskComponent implements OnInit {
       task_assigned_to:this.task.task_assigned_to
     };
     this.http.put<{ status: boolean, message: string ,task:any}>(
-      'http://localhost:3000/user/EditTask',
+      `${this.url}/user/EditTask`,
       tasksDetails
     ).subscribe(
       (resultData) => {

@@ -23,7 +23,8 @@ export class DashbordComponent implements OnInit {
   todoProjects: any[] = [];
   inProgressProjects: any[] = [];
   completedProjects: any[] = [];
-
+url:String="";
+  
   taskStats = {
     created: 0,
     inProgress: 0,
@@ -35,8 +36,10 @@ export class DashbordComponent implements OnInit {
     private router: Router,
     private http: HttpClient
   ) {}
+  
 
   ngOnInit() {
+    this.url = this.authService.apiUrl;
     if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/login']);
       return;
@@ -85,7 +88,7 @@ export class DashbordComponent implements OnInit {
 
     this.http
       .post<{ status: boolean; projects: any[] }>(
-        'http://localhost:3000/user/projects',
+        `${this.url}/user/projects`,
         { projectIds: this.projectIds }
       )
       .subscribe({
@@ -127,7 +130,7 @@ export class DashbordComponent implements OnInit {
   
     this.http
       .post<{ status: boolean; tasks: any[]; message: string }>(
-        'http://localhost:3000/user/getTasks',
+        `${this.url}/user/getTasks`,
         allTaskIds
       )
       .subscribe({
@@ -233,7 +236,7 @@ export class DashbordComponent implements OnInit {
 
     this.http
       .post<{ status: boolean; employees: any[] }>(
-        'http://localhost:3000/user/employees',
+        `${this.url}/user/employees`,
         { employeeIds: this.employeeIds }
       )
       .subscribe({

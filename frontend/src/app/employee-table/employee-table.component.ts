@@ -21,10 +21,12 @@ adminDetails: any = {};
   taskIds:any;
   dtOptions:any;
   dtTrigger:Subject<any> = new Subject<any>();
+  url:String="";
 
   constructor(private authService: AuthService, private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
+    this.url = this.authService.apiUrl;
     this.dtOptions  = {
       pagingType:"full_numbers"
     }
@@ -59,7 +61,7 @@ adminDetails: any = {};
     console.log("Employee Ids:",this.employeeIds);
 
     this.http
-       .post<{ status: boolean; employees: any[];assignedTask:any }>('http://localhost:3000/user/employees', {
+       .post<{ status: boolean; employees: any[];assignedTask:any }>(`${this.url}/user/employees`, {
         employeeIds: this.employeeIds,
        })
        .subscribe({
@@ -90,7 +92,7 @@ adminDetails: any = {};
     console.log("DeleteEmployee",Employee);
   
     this.http
-      .delete<{ status: boolean; message: string }>('http://localhost:3000/user/DeleteEmployee', {
+      .delete<{ status: boolean; message: string }>(`${this.url}/user/DeleteEmployee`, {
         body: Employee 
       })
       .subscribe({

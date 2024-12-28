@@ -27,9 +27,10 @@ export class CreateTasksComponent implements OnInit {
   empName:string="";
   project_start:Date=new Date();
   project_end:Date=new Date();
-
+url:String="";
   ngOnInit(): void {
     //project id
+    this.url = this.authService.apiUrl;
     this.route.params.subscribe((params)=>{
       this.project_id = params["id"];
       this.project_start = params["start"];
@@ -61,7 +62,7 @@ export class CreateTasksComponent implements OnInit {
           console.log("Employee Ids:",this.employeeIds);
 
           this.http
-          .post<{ status: boolean; employees: any[] }>('http://localhost:3000/user/employees', {
+          .post<{ status: boolean; employees: any[] }>(`${this.url}/user/employees`, {
           employeeIds: this.employeeIds,
           })
         .subscribe({
@@ -109,7 +110,7 @@ export class CreateTasksComponent implements OnInit {
     };
     this.http
       .post<{ status: boolean; message: string }>(
-        'http://localhost:3000/user/createTasks',
+        `${this.url}/user/createTasks`,
         tasksDetails
       )
       .subscribe(

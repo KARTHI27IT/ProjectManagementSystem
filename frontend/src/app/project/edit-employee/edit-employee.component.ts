@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-edit-employee',
@@ -15,13 +16,14 @@ export class EditEmployeeComponent implements OnInit {
   empPassword: string = '';
   empPhoneno: number = 0;
   employee_id: string = '';
-
+  
   private route = inject(ActivatedRoute); 
-  constructor(public http: HttpClient, public router: Router) {} 
+  constructor(public http: HttpClient, public router: Router,public authService:AuthService) {} 
 
   employee: any;
-
+url:String="";
   ngOnInit() {
+    this.url = this.authService.apiUrl;
     this.route.params.subscribe((params) => {
       this.employee_id = params['id'];
     });
@@ -35,7 +37,7 @@ export class EditEmployeeComponent implements OnInit {
 
     this.http
       .post<{ status: boolean; employee: any }>(
-        'http://localhost:3000/user/SingleEmployee',
+        `${this.url}/user/SingleEmployee`,
         EMPLOYEE_ID
       )
       .subscribe({
@@ -62,7 +64,7 @@ export class EditEmployeeComponent implements OnInit {
     console.log("Updating employee Details:", EmployeeDetails);
 
     this.http.put<{ status: boolean, message: string, employee: any }>(
-      'http://localhost:3000/user/EditEmployee',
+      `${this.url}/user/EditEmployee`,
       EmployeeDetails
     ).subscribe(
       (resultData) => {

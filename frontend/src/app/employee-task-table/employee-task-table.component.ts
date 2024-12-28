@@ -19,6 +19,7 @@ export class EmployeeTaskTableComponent {
   taskIds: any; 
   tasks: any;
   dtoptions:any;
+  url:String="";
   dtTrigger:Subject<any> = new Subject<any>();
   constructor(
     private http: HttpClient,
@@ -27,6 +28,7 @@ export class EmployeeTaskTableComponent {
   ) {}
 
   ngOnInit(): void {
+    this.url = this.authService.apiUrl;
     this.dtoptions  = {
       pagingType: 'full_numbers',
       pageLength: 5,
@@ -87,7 +89,7 @@ export class EmployeeTaskTableComponent {
     // Send task IDs to the backend to fetch task details
     this.http
       .post<{ status: boolean; tasks: any, message: string }>(
-        'http://localhost:3000/user/getTasks',
+        `${this.url}/user/getTasks`,
         this.taskIds// Send taskIds as an object
       )
       .subscribe({

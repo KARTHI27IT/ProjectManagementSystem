@@ -46,8 +46,9 @@ export class ProjectComponent implements OnInit {
   
 
 
-
+  url:String="";
   ngOnInit(): void {
+    this.url = this.authService.apiUrl;
     this.route.params.subscribe((params)=>{
       this.project_id = params["id"];
     });
@@ -94,7 +95,7 @@ export class ProjectComponent implements OnInit {
     project_id:this.project_id
   };
     this.http
-      .post<{ status: boolean; project:any }>('http://localhost:3000/user/SingleProject',PROJECT_ID)
+      .post<{ status: boolean; project:any }>(`${this.url}/user/SingleProject`,PROJECT_ID)
       .subscribe({
         next: (result) => {
           if (result.status) {
@@ -115,7 +116,7 @@ export class ProjectComponent implements OnInit {
 
   getTasksDetails():void{
     this.http
-      .post<{ status: boolean; tasks:any,message:String }>('http://localhost:3000/user/getTasks',this.tasksIds)
+      .post<{ status: boolean; tasks:any,message:String }>(`${this.url}/user/getTasks`,this.tasksIds)
       .subscribe({
         next: (result) => {
           if (result.status) {
@@ -155,7 +156,7 @@ export class ProjectComponent implements OnInit {
   
   
     this.http
-      .delete<{ status: boolean; message: string }>('http://localhost:3000/user/DeleteTask', {
+      .delete<{ status: boolean; message: string }>(`${this.url}/user/DeleteTask`, {
         body: Task
       })
       .subscribe({
@@ -202,7 +203,7 @@ updateStatus(project_id:String){
     project_id:this.project._id,
     project_status:this.project.project_status
   }
-  this.http.put<{status:boolean,message:String}>("http://localhost:3000/updateProjectStatus",PROJECT_STATUS)
+  this.http.put<{status:boolean,message:String}>(`${this.url}/updateProjectStatus`,PROJECT_STATUS)
   .subscribe((resultData)=>{
     if(resultData.status){
       Swal.fire({
@@ -365,7 +366,7 @@ initializeChart1(): void {
     const filePath = file.filePath;
     const fileName = file.fileName;
     console.log("path:",filePath);
-    const url = `http://localhost:3000/download/${filePath}`;
+    const url = `${this.url}/download/${filePath}`;
     this.http.get(url, { responseType: 'blob' }).subscribe(
       (response) => {
         const blob = new Blob([response]);

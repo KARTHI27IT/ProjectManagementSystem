@@ -18,7 +18,7 @@ export class CreateProjectComponent {
   no_of_tasks: number = 0;
   project_id:String='';
   project_status:String="created";
-  
+  url:String="";
   
   constructor(
     public http: HttpClient,
@@ -27,6 +27,7 @@ export class CreateProjectComponent {
   ) {}
 
   ngOnInit() {
+this.url = this.authService.apiUrl;
     if (!this.authService.isLoggedIn()) {
       alert('You must be logged in to access the dashboard!');
       this.router.navigate(['/login']);
@@ -53,7 +54,7 @@ export class CreateProjectComponent {
     };
 
     this.http.post<{ status: boolean, message: string ,project_id:String}>(
-      'http://localhost:3000/user/createProject',
+      `${this.url}/user/createProject`,
       projectDetails
     ).subscribe(
       (resultData) => {

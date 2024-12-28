@@ -19,13 +19,13 @@ export class ProjectTableComponent {
   dtoptions:any;
   dtTrigger:Subject<any> = new Subject<any>();
   constructor(private authService: AuthService, private http: HttpClient, private router: Router) {}
-
+url:String="";
   ngOnInit(): void {
     this.dtoptions  = {
       pagingType:"full_numbers",
       pageLength:5
     }
-
+    this.url = this.authService.apiUrl;
 
     this.adminEmail = localStorage.getItem('userEmail');
     if (!this.adminEmail) {
@@ -56,7 +56,7 @@ export class ProjectTableComponent {
     }
 
     this.http
-      .post<{ status: boolean; projects: any[] }>('http://localhost:3000/user/projects', {
+      .post<{ status: boolean; projects: any[] }>(`${this.url}/user/projects`, {
         projectIds: this.projectIds,
       })
       .subscribe({
@@ -91,7 +91,7 @@ DeleteProject(projectId: string): void {
   console.log("DeleteProject",Project);
 
   this.http
-    .delete<{ status: boolean; message: string }>('http://localhost:3000/user/DeleteProject', {
+    .delete<{ status: boolean; message: string }>(`${this.url}/user/DeleteProject`, {
       body: Project  
     })
     .subscribe({
