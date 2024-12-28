@@ -46,7 +46,7 @@ export class RegisterComponent {
     };
 
     this.http.post<{status:boolean,message:String}>(
-      `${this.url}:3000/user/create`,
+      `${this.url}/user/create`,
       userPayload
     ).subscribe(
       (resultData) => {
