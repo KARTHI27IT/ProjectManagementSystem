@@ -5,6 +5,16 @@ const cors = require("cors");
 const routes = require("./routes/routes");
 const Nodemailer = require("nodemailer");
 
+// Enable CORS for your front-end (localhost:4200 during development)
+const corsOptions = {
+  origin: 'http://localhost:4200',  // Allow the front-end on this URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
+
+// Alternatively, allow CORS from all origins (for development purposes only)
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

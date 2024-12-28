@@ -33,7 +33,7 @@ url:String="";
       console.error('Admin email not found');
       return;
     }
-
+console.log(this.adminEmail);
     this.authService.getAdminDetails(this.adminEmail).subscribe({
       next: (response) => {
         if (response.status) {
