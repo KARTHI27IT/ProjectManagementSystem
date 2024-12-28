@@ -20,8 +20,9 @@ export class EmployeeFilesComponent implements OnInit {
     public http: HttpClient,
     public authService: AuthService
   ) {}
-
+  
   ngOnInit(): void {
+    
     this.url = this.authService.apiUrl;
     const isEmployee = localStorage.getItem('isEmployee') || '';
     if (isEmployee === 'true') {
