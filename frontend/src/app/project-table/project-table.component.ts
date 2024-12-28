@@ -21,11 +21,12 @@ export class ProjectTableComponent {
   constructor(private authService: AuthService, private http: HttpClient, private router: Router) {}
 url:String="";
   ngOnInit(): void {
+    this.url= this.authService.apiUrl;
     this.dtoptions  = {
       pagingType:"full_numbers",
       pageLength:5
     }
-    this.url = this.authService.apiUrl;
+    console.log("url:",this.url);
 
     this.adminEmail = localStorage.getItem('userEmail');
     if (!this.adminEmail) {
@@ -36,7 +37,9 @@ url:String="";
     this.authService.getAdminDetails(this.adminEmail).subscribe({
       next: (response) => {
         if (response.status) {
+          console.log(response);
           this.adminDetails = response.adminDetails;
+          console.log(this.adminDetails);
           this.getprojects();
         } else {
           console.error('Error:', response.message);
@@ -63,6 +66,7 @@ url:String="";
         next: (result) => {
           if (result.status) {
             this.projects = result.projects || [];
+            console.log("Projects:",this.projects);
             this.dtTrigger.next(null);
           } else {
             console.error('No projects found');

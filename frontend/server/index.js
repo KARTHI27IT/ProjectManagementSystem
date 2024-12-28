@@ -28,7 +28,8 @@ app.get('/api/admin/details', async (req, res) => {
   const { email } = req.query;
 
   try {
-    const admin = await userSchemaModel.find({ email, role: 'admin' });
+    const admin = await userSchemaModel.find({ email:email , role: 'admin' });
+    console.log(admin);
 
     if (!admin) {
       return res.status(404).json({ status: false, message: 'Admin not found.' });
