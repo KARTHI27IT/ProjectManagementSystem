@@ -49,7 +49,7 @@ export class EmployeeFilesComponent implements OnInit {
   getAdminFiles(){
     const employeeIds = this.adminDetails.employees;
     console.log("Employee:",employeeIds);
-    this.http.post<{ status: boolean, message: string, files: any }>(`${this.url}/getAllFiles`, employeeIds)
+    this.http.post<{ status: boolean, message: string, files: any }>(`${this.url}/admin/getAllFiles`, employeeIds)
     .subscribe(
       (resultData) => {
       if (resultData.status) {
