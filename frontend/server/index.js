@@ -13,7 +13,10 @@ const { userSchemaModel, employeeSchemaModel,taskSchemaModel } = require("./user
 
 app.use(routes);
 
-mongoose.connect("mongodb+srv://karthikeyan2207:karthi@projectmanagementsystem.mrivw.mongodb.net/?retryWrites=true&w=majority&appName=ProjectManagementSystem", { useNewUrlParser: true, useUnifiedTopology: true })
+
+
+mongoose.connect("mongodb+srv://karthikeyan2207:karthi@projectmanagementsystem.mrivw.mongodb.net/?retryWrites=true&w=majority&appName=ProjectManagementSystem/", { useNewUrlParser: true, useUnifiedTopology: true })
+
   .then(() => {
     console.log("MongoDB connected");
   })
