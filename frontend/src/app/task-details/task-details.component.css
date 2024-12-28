@@ -1,0 +1,374 @@
+/* 
+.container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    font-size: 18.5px;
+  }
+  
+  .dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: linear-gradient(135deg, #031cff,rgba(3, 28, 255,0.5));
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom:20px;
+  }
+  
+  .profile-info {
+    display: flex;
+    align-items: center;
+  }
+
+  
+  .info h2 {
+    margin: 0;
+    font-size: 1.5em;
+  }
+  
+  .info p {
+    margin: 5px 0;
+  }
+  
+  .tasks-section {
+    margin-top: 30px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  
+  
+  
+  .actions-section {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .edit-profile-btn, .change-password-btn {
+    background-color: black;
+    box-shadow: 5px 5px 10px black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 10px;
+  }
+  
+  .edit-profile-btn:hover, .change-password-btn:hover {
+    scale: 1.05;
+    transition: 0.2s;
+    
+  }
+
+  .employee{
+    width: 80%;
+    padding: 20px;
+    border-radius: 10px;
+    height: fit-content;
+    background-color: rgba(255,255,255,0.5);
+    box-shadow: 10px 10px 20px black;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+    border-left:1px solid rgba(255,255,255,.3);
+    border-top:1px solid rgba(255,255,255,.3);
+  }
+  @media (max-width:768px) {
+    .employee{
+      width: 100%;
+    }
+  } */
+
+  .container-fluid{
+    margin-top: 120px; 
+}
+.top{
+    display: flex;
+    justify-content: center !important;
+}
+.main{
+    background-color: #40d522;
+    display: flex;
+    padding: 10px 0 !important;
+    color: aliceblue;
+    align-items: center;
+    border-radius:5px;
+}
+
+.main .form-label{
+    color: white !important;
+    font-size: 13px;
+}
+.main h3{
+    font-size: 20px !important;
+}
+
+.main>div{
+    color: white !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 15px;
+}
+.desc{
+    margin: 20px;
+    background-color: white;
+    border-radius: 10px;
+    text-align: justify;
+    padding: 10px 20px;
+}
+
+.desc .form-label{
+    font-size: 13px;
+    color: gray;
+}
+.main>div p{
+    font-weight: 500;
+}
+.status{
+    background-color: orange;
+    border-radius: 5px;
+    height: fit-content;
+    padding: 10px 15px !important;
+    text-transform: capitalize;
+    text-align: center !important;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+
+
+
+.right h5{
+    border-left: 5px solid #40d522;
+    padding: 15px;
+    border-radius: 5px;
+}
+.right{
+    margin-left: 20px; 
+    padding: 10px;
+    
+}
+.right>div{
+    background-color: white;
+    margin:30px 0;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    
+}
+#chart1{
+    padding: 10px;
+}
+
+
+
+
+
+.modal{
+    color: black !important;
+}
+
+
+.modal h4{
+    background-color: #40d522;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+    text-shadow: 2px 2px 4px black;
+    width:fit-content;
+}
+.modal i{
+    scale: 1.2;
+}
+
+
+
+.header{
+  display: flex;
+  justify-content: space-between;
+}
+.header button{
+  background-color: #40d522;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+.header button:hover{
+  box-shadow: inset 150px 0 0 0 orange;
+  transition: 0.5s;
+}
+
+.header  span{
+    color: #40d522;
+    cursor: pointer;
+} 
+
+
+/* .task-header{
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 10px !important;
+    border-radius: 5px;
+    border-bottom: 1px gray solid;
+
+}
+.task-header h4{
+    padding-top: 15px;
+}
+
+.task-header > button:hover{
+    background-color: #4df42c;
+} */
+
+
+.details2 i {
+    scale:2;
+    margin-right: 15px;
+    display: flex;
+    color: white;
+    padding:5px 6px;
+    border-radius: 5px;
+}  
+
+.list{
+  width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.list>div{
+    padding:20px;
+    width:15rem;
+    height:8rem;
+    border-radius: 5px;
+    background-color: white !important;
+}
+
+.list>div:hover i{
+    scale: 2.02;
+    transition:0.7s !important;
+    
+}
+
+.project1 i{
+    background-color: #2e46ce !important;
+}
+.employee1 i{
+    background-color: rgb(2, 150, 2) !important;
+}
+.task1 i{
+    background-color: rgb(247, 10, 50) !important;
+}
+
+
+
+@media (max-width:768px){
+    .details>div img{
+        height: min-content;
+    }
+}
+
+
+
+.details2{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.bottom h4{
+    color: #40d522;
+}
+.bottom a{
+    text-decoration: none;
+    background-color: #40d522;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+  
+
+
+
+
+
+
+
+
+
+
+
+/* 
+@media (max-width: 768px) {
+    .projectDates ul {
+        flex-direction: column !important;
+    }
+    .projectDetails li{
+        border-bottom: none;
+        padding: 10px 0;
+    }
+}
+@media (max-width: 576px) {
+    .project2 {
+        margin: 3.5rem !important; 
+        padding: 1rem !important;
+    }
+    .taskList .card{
+        width: 19rem;
+    }
+}
+@media (max-width:350px){
+    .project2 {
+        margin: 1rem !important; 
+        padding: 0.5rem !important;
+    }
+    .taskList .card{
+        width: 16.5rem !important;
+        margin:20px 5px !important
+    }
+}  */
+
+
+/* .projectDates li:hover{
+    text-shadow: 2px 2px 4px rgb(0, 0, 0,0.2);
+    cursor: pointer;
+}
+.projectDetails i{
+    float: right;
+    scale:1.4;
+    
+}
+.projectDetails i:hover{
+    scale:1.6;
+    transition: 1s;
+} */
+
+
+
+/* 
+.project h5{
+    text-align: justify;
+} */
+
+
+
+/* @media (max-width:768px) {
+    .project h5{
+        font-size: 18px;
+        padding: 0 10px !important;
+    }
+} */

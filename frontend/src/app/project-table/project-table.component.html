@@ -1,0 +1,57 @@
+<div class="body pt-5 my-5">
+    <div  class="container  projectTable">
+      <div class="header">
+        <div>
+          <h4>Projects</h4>
+          <p><span routerLink="/dashbord">Dashboard  </span>  >  Projects</p>
+        </div>
+        <div class="create">
+          <button class="btn btn-dark my-3 create-btn" routerLink="/createProject">+ Create Project</button>
+        </div>
+      </div>
+        <div  data-aos="fade-up" class="tableres p-3 table-responsive">
+          <table datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger" class="table">
+            <thead>
+              <tr class="table-dark">
+                <th scope="col">S.no</th>
+                <th scope="col">PROJECT NAME</th>
+                <th>START DATE</th>
+                <th>END DATE</th>
+                <th scope="col">STATUS</th>
+                <th scope="col">VIEW</th>
+                <th scope="col">ACTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let project of projects; let i = index">
+                <td class="sno align-middle">{{ i + 1 }}</td>
+                <td class="align-middle">{{ project.project_name }}</td>
+                <td class="align-middle">{{formatDate(project.project_start)}}</td>
+                <td class="align-middle">{{formatDate(project.project_end)}}</td>
+                <td class="align-middle">
+                  <p
+                  class="status "
+                    [ngStyle]="{
+                      backgroundColor: project.project_status === 'created' ? '#0db5bb' :
+                                      project.project_status === 'in progress' ? 'orange' :
+                                      project.project_status === 'pending' ? 'red' :
+                                      '#40d522'
+                    }">
+                    {{ project.project_status }}
+                  </p>
+                </td>
+
+                <td class="align-middle">
+                  <button class="view" (click)="viewProject(project._id)">View</button>
+                </td>
+                <td class="icons align-middle">
+                  <i (click)="EditProject(project._id)" class="fa-solid fa-pen-to-square edit"></i>
+                  <i (click)="DeleteProject(project._id)" class="fa-solid fa-trash delete"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+</div>

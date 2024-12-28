@@ -1,0 +1,101 @@
+
+.container-fluid{
+    background: linear-gradient(45deg,#0ba52f,#29f800);
+    min-height: 100vh;
+    padding-bottom: 50px;
+}
+.loginform{
+    border-radius: 5px;
+    background-color: white;
+    height: 70%;
+    width: 100%;
+    margin-top: 130px;
+    
+    /* box-shadow: 10px 10px 20px black; */
+    /* border-bottom: 1px solid rgba(0,0,0,0.3);
+    border-left:1px solid rgba(255,255,255,.3);
+    border-top:1px solid rgba(255,255,255,.3);
+    border-bottom: 1px solid rgb(0, 0, 0,0.3);
+    border-right: 1px solid rgb(0, 0, 0,0.3); */
+    color: #40d522;
+}
+.loginform form{
+    height: 100%;
+    font-weight: 700 !important;
+}
+.loginform a{
+    color: #40d522;
+}
+.loginform form input:focus,
+.loginform form textarea:focus {
+    border-color: #40d522;
+    box-shadow: 0px 0px 5px rgba(64, 213, 34, 0.5);
+    outline: none;
+}
+
+.form-label {
+    /* color: #40d522; */
+    font-weight: 8000;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: rgba(0,0,0,0.8) !important;
+}
+.loginform img{
+    height: 100%;
+}
+.loginform form{
+    padding: 20px 0;
+}
+.loginform form input{
+    border:2px solid rgba(128, 128, 128,0.8);
+}
+
+.btn {
+    background: linear-gradient(45deg, #40d522, #28a745);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, #28a745, #40d522);
+    transform: scale(1.05);
+}
+@media (max-width:350px) {
+    .loginform form{
+       
+        padding:20px;
+    }
+}
+/* }.register{
+    background-image: url(/assets/login22.png);
+    background-size: cover;
+    background-position: center;
+    padding: 10px;
+} */
+/* .register {
+    /* background-image:linear-gradient(rgba(95, 224, 218,0.5),rgb(108, 3, 245,0.5)), url('/assets/login22.png'); 
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+    color: white;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+
+} */
+
+.login h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.login p {
+    font-size:20px;
+    line-height: 1.5;
+    padding: 0 10px;
+}

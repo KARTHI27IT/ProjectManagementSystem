@@ -1,0 +1,102 @@
+<!-- <div class="TaskTable pt-5 mt-5">
+  <h1 class="text-center">Assigned Tasks</h1>
+  <div class="container my-5">
+    <div class="tableres table-responsive-lg">
+      <table class="table table-striped table-bordered" datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger">
+        <thead>
+          <tr class="table-dark">
+            <th scope="col">S.No</th>
+            <th scope="col">Task Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Report</th>
+            <th scope="col">View</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks; let i = index">
+            <td class="sno" scope="row">{{ i + 1 }}</td>
+            <td>{{ task.task_name }}</td>
+            <td 
+            [ngStyle]="{
+              color: task.task_status === 'planned' ? '#2e46ce' :
+                     task.task_status === 'started' ? 'blue' :
+                     task.task_status === 'pending' ? 'orange' :
+                     task.task_status === 'in progress' ? 'red' :
+                     task.task_status === 'under review' ? 'purple' :
+                     task.task_status === 'completed' ? 'green' :
+                     'black'
+            }"
+            class="status">
+            {{ task.task_status }}
+          </td>
+          
+            <td><button class="btn btn-primary" (click)="report(task._id)">Report</button></td>
+            <td><button class="btn btn-primary" (click)="TaskDetails(task._id)">More details</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div> -->
+
+
+
+
+
+
+<div class="body pt-5 my-5">
+  <div  class="container  projectTable">
+    <div class="header">
+      <div>
+        <h4>Tasks</h4>
+        <p><span routerLink="/employeeDashboard">Dashboard  </span>  >  Tasks</p>
+      </div>
+    </div>
+      <div  data-aos="fade-up" class="tableres p-3 table-responsive">
+        <table datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger" class="table">
+          <thead>
+            <tr class="table-dark">
+              <th scope="col">S.no</th>
+              <th scope="col">TASK NAME</th>
+              <th>START DATE</th>
+              <th>END DATE</th>
+              <th scope="col">STATUS</th>
+              <th scope="col">REPORT</th>
+              <th scope="col">MORE DETAILS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let task of tasks; let i = index">
+              <td class="sno align-middle">{{ i + 1 }}</td>
+              <td class="align-middle">{{ task.task_name }}</td>
+              <td class="align-middle">{{formatDate(task.task_start)}}</td>
+              <td class="align-middle">{{formatDate(task.task_end)}}</td>
+              <td class="d-flex align-items-center">
+                <p
+                  class="status"
+                  [ngStyle]="{
+                    backgroundColor: 
+                      task.task_status === 'planned' ? '#6c757d' :  
+                      task.task_status === 'started' ? '#007bff' : 
+                      task.task_status === 'in progress' ? 'orange' : 
+                      task.task_status === 'pending' ? 'red' : 
+                      task.task_status === 'completed' ? '#40d522' : 
+                      task.task_status === 'under review' ? '#ffc107' : 
+                      '#0db5bb'
+                  }"
+                  class="px-3 py-2 text-white rounded"
+                >
+                  {{ task.task_status }}
+                </p>
+              </td>
+              
+
+              <td><button class="btn" (click)="report(task._id)">Report</button></td>
+              <td><button class="btn" (click)="TaskDetails(task._id)">More details</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+</div>

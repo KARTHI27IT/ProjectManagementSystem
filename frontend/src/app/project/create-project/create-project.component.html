@@ -1,0 +1,44 @@
+<div class="row container-fluid p-5 my-5 ">
+  <div class="loginform col-lg-6 mx-auto">
+    <h4>Create Project</h4>
+    <form (ngSubmit)="createProject()" method="post">
+      <!-- Section Title -->
+      <h5 class="section-title">Project Details</h5>
+
+      <div class="mb-3">
+        <label class="form-label"><i class="fas fa-project-diagram"></i> Project Name</label>
+        <input [(ngModel)]="project_name" [ngModelOptions]="{ standalone: true }" name="project_name" class="form-control" placeholder="Enter project name" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label"><i class="fas fa-align-left"></i> Project Description</label>
+        <textarea [(ngModel)]="project_desc" [ngModelOptions]="{ standalone: true }" name="project_desc" class="form-control" placeholder="Enter project description" required></textarea>
+      </div>
+
+      <h5 class="section-title">Dates</h5>
+
+      <div class="mb-3">
+        <label class="form-label"><i class="fas fa-calendar-alt"></i> Start Date</label>
+        <input [(ngModel)]="project_start" type="date" [ngModelOptions]="{ standalone: true }" name="project_start" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label"><i class="fas fa-calendar-alt"></i> End Date</label>
+        <input [(ngModel)]="project_end" type="date" [ngModelOptions]="{ standalone: true }" name="project_end" class="form-control" required>
+      </div>
+
+      <h5 class="section-title">Details</h5>
+
+      <div class="mb-3">
+        <label class="form-label"><i class="fa-solid fa-bars-progress"></i>Project Status</label>
+        <input [(ngModel)]="project_status"  [ngModelOptions]="{ standalone: true }" name="project_start" class="form-control" required disabled>
+      </div>
+      <div class="mb-3">
+        <label class="form-label"><i class="fas fa-tasks"></i> No of Tasks</label>
+        <input [(ngModel)]="no_of_tasks" type="number" [ngModelOptions]="{ standalone: true }" name="no_of_tasks" class="form-control" placeholder="Enter number of tasks" required>
+      </div>
+
+      <button type="submit" class="btn button">Submit</button>
+    </form>
+  </div>
+</div>

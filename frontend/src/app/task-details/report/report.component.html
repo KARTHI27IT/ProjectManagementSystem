@@ -1,0 +1,50 @@
+<div class="container-fluid pt-5 mt-5">
+  <div class="col-lg-6 loginform mx-auto">
+    <h4 class="text-center">Report</h4>
+  <form (ngSubmit)="SendEmail()" method="post">
+      <div class="mb-3">
+        <label class="form-label">Report Type</label>
+        <select [(ngModel)]="form.report_type" [ngModelOptions]="{ standalone: true }" name="report_type" class="form-control" required>
+          <option value="Task Completion">Task Completion</option>
+          <option value="Task Issue">Task Issue</option>
+          <option value="System Bug">System Bug</option>
+        </select>
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea [(ngModel)]="form.report_desc" [ngModelOptions]="{ standalone: true }" name="task_desc" class="form-control" required></textarea>
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Project ID</label>
+        <input [(ngModel)]="form.project_id" [ngModelOptions]="{ standalone: true }" name="task_start" class="form-control" required disabled>
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Task Name</label>
+        <input [(ngModel)]="form.task_name" [ngModelOptions]="{ standalone: true }" name="task_end" class="form-control" required disabled>
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Reporter Name</label>
+        <input [(ngModel)]="form.empName" [ngModelOptions]="{ standalone: true }" name="task_status" class="form-control" required disabled>  
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Reporter Email</label>
+        <input [(ngModel)]="form.empEmail" [ngModelOptions]="{ standalone: true }" name="reporter_email" class="form-control" required disabled>  
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Status</label>
+        <input [(ngModel)]="form.task_status" [ngModelOptions]="{ standalone: true }" name="task_status" class="form-control" required disabled>  
+      </div>
+  
+
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    
+  </form>
+</div>
+</div>

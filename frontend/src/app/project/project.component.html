@@ -1,0 +1,246 @@
+<div class="container-fluid row ">
+<div class="top  col-lg-8 row ">
+
+  <div class="header">
+    <h4>Project Detail</h4>
+    <p><span routerLink="/dashbord">Dashboard </span><span> > {{project.project_name}} </span> >  Tasks</p>
+  </div>
+  <div class="main row col-lg-12 col-md-10">
+    <div class="col-lg-4">
+      <h3 >{{project.project_name}}</h3>
+    </div>
+    <div class="col-lg-2">
+      <div>
+        <p class="form-label" >Start date :</p>
+        <p>{{formatDate(project.project_start)}}</p>
+      </div>
+    </div>
+    <div class="col-lg-2">
+      <div>
+        <p class="form-label">End date :</p>
+        <p>{{formatDate(project.project_end)}}</p>
+      </div>
+    </div>
+    <div class="status col-lg-2">
+      {{project.project_status}}
+    </div>
+     <div class="icon col-lg-2">
+      <i (click)="EditProject(project._id)" class="fa-solid fa-pen-to-square mt-1"></i>
+    </div> 
+  </div>
+
+  <div class="desc">
+    <p class="form-label">
+    Project Description  
+    </p>
+    <p>{{project.project_desc}}</p>
+  </div>
+  
+  <div class="list row my-lg-3">
+    <div routerLink="/projectTable" class="details2 project1">
+      <div>
+        <h5>Total Days</h5>  
+        <p>{{ calculateDays(project.project_start, project.project_end) }}</p>
+      </div>
+      <div>
+        <i class="fa-solid fa-calendar-days mt-4 ms-5"></i> 
+      </div>
+    </div>
+
+    <div routerLink="/employeeTable" class="details2 employee1">
+      <div>
+        <h5>Total Tasks</h5>
+        <p>{{project.no_of_tasks}}</p>
+      </div>
+      <div>
+        <i class="fa-solid fa-list-check mt-4 ms-5"></i>
+      </div>
+    </div>
+    <div routerLink="/projectTable" class="details2 project1">
+      <div>
+        <h5>Employees</h5>  
+        <p>{{adminDetails.employees.length}}</p>
+      </div>
+      <div>
+         <i class="fa-solid fa-users mt-4 ms-5"></i>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Task List -->
+    <div class="main2">
+      <div class="task-header">
+        <div>
+          <h4 class="align-middle">Tasks</h4>
+        </div>
+        <div class="buttons d-flex">
+          <div *ngIf="project.project_status !== 'completed'">
+            <button class="p-2 btn btn-dark m-2" (click)="CreateTasks(project._id,project.project_start,project.project_end )">Add Task</button>
+          </div>
+          <button class="p-2 btn btn-dark m-2" data-bs-toggle="modal" data-bs-target="#exampleModal" >Update status</button>
+
+        </div>
+      </div>
+    
+    <div class="row">
+      <div class="taskList col-lg-4 col-md-6 col-sm-12" *ngFor="let task of tasks; let i = index">
+        <div class="card">
+          <div class="card-body">
+            <div class="tasks">
+              <div>
+                <label class="form-label">Task Name</label>
+                <h4 class="card-title text-wrap">{{task.task_name}}</h4>
+                <h6 class="my-2">{{task.task_status}}</h6>
+              </div>
+
+              <button 
+              class="btn my-3" 
+              data-bs-toggle="modal" 
+              [attr.data-bs-target]="'#update-' + i"
+              (click)="initializeTaskChart(task.task_status, i)">
+              More details
+            </button>
+            
+              <div class="file" *ngIf="task.fileUploaded === 'true'">
+                <i class="fa-solid fa-circle-check"></i> file Uploaded
+              </div>
+              <!-- Modal with unique ID -->
+              <div 
+                class="modal fade" 
+                [id]="'update-' + i" 
+                tabindex="-1" 
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Task Details</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <i (click)="DeleteTask(task._id)" class="fa-solid fa-trash m-2 edit"></i>
+                      <i (click)="EditTask(task._id)" class="fa-solid fa-pen-to-square m-2 edit"></i>
+                      <label class="form-label">Task Name</label>
+                      <h2 class="card-title">{{task.task_name}}</h2>
+                      <label class="form-label">Task Description</label>
+                      <p class="card-subtitle mb-2">{{task.task_desc}}</p>
+                      <div class="row">
+
+                      <div class="taskDates col-6">
+                      <label class="form-label">Assigned to</label>
+                      <p>{{task.task_assigned_to}}</p>
+                      <label class="form-label">Duration</label>
+                          <p>Start Date: {{formatDate(task.task_start)}}</p>
+                          <p>End Date: {{formatDate(task.task_end)}}</p>
+                      <label class="form-label">Status</label>
+                      <p class="status">{{task.task_status}}</p>
+                      </div>
+                      <div  class="col-6 taskChart">
+                      <h5>Status</h5>
+                      <div [id]="'taskChart-' + i"></div>
+
+                      </div>
+                      </div>
+                      
+                      <div *ngIf="task.fileUploaded === 'true'" class="bottom">
+                          
+                          <div class="download">
+                            <div>
+                              <p class="form-label"><i class="fa-solid fa-circle-check"></i> file Uploaded</p>
+                            <p>File Name:{{task.files[0].fileName}}</p>
+                            </div>
+                            <div>
+                              <button (click)="downloadFile(task.files[0])" class="btn btn-primary">
+                                <i class="fa-solid fa-download"></i></button>
+                            </div>
+                          </div>
+                            
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--Model end-->
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<div class="right col-lg-4" >
+  
+  <div  id="chart">
+    <h5>Tasks Status</h5>
+  </div>
+  <div id="chart1">
+    <h5>Tasks</h5>
+  </div>
+</div>
+
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Admin details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="updateStatus(project._id)" method="post">
+              
+          <div class="mb-3">
+            <label class="form-label">Project Details</label>
+            <input
+             [(ngModel)]="project.project_name" 
+             [ngModelOptions]="{ standalone: true }" 
+             class="form-control" 
+             required
+             disabled>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Start Date</label>
+            <input
+             [(ngModel)]="project_start" 
+             [ngModelOptions]="{ standalone: true }" 
+              class="form-control" 
+             required
+             disabled>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">End Date</label>
+            <input
+             [(ngModel)]="project_end" 
+             [ngModelOptions]="{ standalone: true }" 
+             class="form-control" 
+             required
+             disabled>
+          </div>
+        
+          <div class="mb-3">
+            <label class="form-label">Update Task Status</label>
+            <select [(ngModel)]="project.project_status" 
+            [ngModelOptions]="{ standalone: true }" 
+            class="form-control" 
+            required>
+              <option value="pending">Pending</option>
+              <option value="in progress">In Progress</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

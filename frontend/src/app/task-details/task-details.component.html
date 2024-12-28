@@ -1,0 +1,256 @@
+
+  
+
+  <!--UPDATE STATUS MODAL-->
+  <div class="modal fade" id="update" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Task Update </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="updateStatus(task._id)" enctype="multipart/form-data" method="post">
+              
+              <div class="mb-3">
+                <label class="form-label">Task Name</label>
+                <input
+                 [(ngModel)]="task.task_name" 
+                 [ngModelOptions]="{ standalone: true }" 
+                 name="task_name" class="form-control" 
+                 required
+                 disabled>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Assigned By</label>
+                <input
+                 [(ngModel)]="employeeDetails.Admin" 
+                 [ngModelOptions]="{ standalone: true }" 
+                 name="Admin" class="form-control" 
+                 required
+                 disabled>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Start Date</label>
+                <input
+                 [(ngModel)]="task_start" 
+                 [ngModelOptions]="{ standalone: true }" 
+                 name="task_start" class="form-control" 
+                 required
+                 disabled>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">End Date</label>
+                <input
+                 [(ngModel)]="task_end" 
+                 [ngModelOptions]="{ standalone: true }" 
+                 name="task_end" class="form-control" 
+                 required
+                 disabled>
+              </div>
+            
+              <div class="mb-3">
+                <label class="form-label">Update Task Status</label>
+                <select [(ngModel)]="task.task_status" 
+                [ngModelOptions]="{ standalone: true }" 
+                name="task_status" class="form-control" 
+                required>
+                <option value="started">Started</option>
+                <option value="pending">pending</option>
+                <option value="in progress">In Progress</option>
+                <option value="under review">Under Review</option>
+                <option value="completed">Completed</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Attachments</label>
+                <input
+                type="file"
+                class="form-control" 
+                (change)="onFileSelected($event)"
+                required>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="container-fluid row col-12 ">
+    <div class="top  col-lg-8 row ">
+    
+      <div class="header">
+      <div>
+        <h4>Task Detail</h4>
+        <p><span routerLink="/dashbord">Dashboard </span><span> > Tasks  </span> > {{task.task_name}}</p>
+      </div>
+      <div>
+        <button class="mt-3 mx-2" data-bs-toggle="modal" data-bs-target="#update">Update Status</button>
+        <button class="mt-3 mx-2" (click)="report(task._id)">Report</button>
+      </div>
+      </div>
+      <div class="main row ms-3">
+        <h3 class="col-lg-4">{{task.task_name}}</h3>
+        <div class="col-2">
+          <div>
+            <p class="form-label" >Start date :</p>
+            <p>{{formatDate(task.task_start)}}</p>
+          </div>
+        </div>
+        <div class="col-lg-2">
+          <div>
+            <p class="form-label">End date :</p>
+            <p>{{formatDate(task.task_end)}}</p>
+          </div>
+        </div>
+        <div class="status col-lg-2">
+          {{task.task_status}}
+        </div>
+         <!-- <div class="icon col-lg-2">
+          <i (click)="EditProject(project._id)" class="fa-solid fa-pen-to-square mt-1"></i>
+        </div>  -->
+      </div>
+    
+      <div class="desc ms-5">
+        <p class="form-label">
+        Task Description  
+        </p>
+        <p>{{task.task_desc}}</p>
+      </div>
+      
+      <div class="list row my-lg-3">
+        <div class="details2 project1">
+          <div>
+            <h5>Remaining Days</h5>  
+            <p>{{ calculateRemainingDays(task.task_start, task.task_end) }}</p>
+          </div>
+          <div>
+            <i class="fa-solid fa-calendar-days mt-4 ms-5"></i> 
+          </div>
+        </div>
+    
+        <div class="details2 employee1">
+          <div>
+            <h5>Status</h5>
+            <p>{{task.task_status}} </p>
+          </div>
+          <div>
+            <i class="fa-solid fa-list-check mt-4 ms-5"></i>
+          </div>
+        </div>
+        <div  class="details2 project1">
+          <div>
+            <h5>Percentage</h5>  
+            <p>{{task_percentage}}</p>
+          </div>
+          <div>
+            <i class="fa-solid fa-percent mt-4 ms-5"></i>
+          </div>
+        </div>
+      </div>
+    
+    <div *ngIf="task.fileUploaded === 'true'" class="bottom ">
+      
+      <div *ngIf="task.files.length === 1">
+      <h4><i class="fa-solid fa-circle-check"></i> File uploaded</h4>
+      <p class="form-label">File name : <a routerLink="/employeeFiles">{{task.files[0].fileName}}</a></p>
+      </div>
+      <div *ngIf="task.files.length>1">
+        <h4><i class="fa-solid fa-circle-check"></i> Files uploaded</h4>
+        <ul *ngFor="let file of task.files">
+          <li><p class="form-label">File name : <a routerLink="/employeeFiles">{{file.fileName}}</a></p></li>
+        </ul>
+      </div>
+    </div>
+     
+      
+    </div>
+    
+    <div class="right col-lg-4" >
+      <div class="m-4" id="chart">
+        <h5>Tasks Status</h5>
+      </div>
+    </div>
+    
+    </div>
+    
+    
+
+       <!-- Task List -->
+        <!-- <div class="main2">
+          <div class="task-header">
+            <div>
+              <h4 class="align-middle">Tasks</h4>
+            </div>
+            <div class="buttons d-flex">
+              <div *ngIf="project.project_status !== 'completed'">
+                <button class="p-2 btn btn-dark m-2" (click)="CreateTasks(project._id,project.project_start,project.project_end )">Add Task</button>
+              </div>
+              <button class="p-2 btn btn-dark m-2" data-bs-toggle="modal" data-bs-target="#exampleModal" >Update status</button>
+            </div>
+          </div>
+        
+        <div class="row">
+          <div class="taskList col-lg-4 col-md-6 col-sm-12" *ngFor="let task of tasks; let i = index">
+            <div class="card">
+              <div class="card-body">
+                <div class="tasks">
+                  <div>
+                    <label class="form-label">Task Name</label>
+                    <h4 class="card-title text-wrap">{{task.task_name}}</h4>
+                    <h6 class="my-2">{{task.task_status}}</h6>
+                  </div>
+                  <div id="'charts-' +i">
+    
+                  </div>
+                  <button 
+                    class="btn my-3" 
+                    data-bs-toggle="modal" 
+                    [attr.data-bs-target]="'#update-' + i">
+                    More details
+                  </button>
+      
+                  
+                  <div 
+                    class="modal fade" 
+                    [id]="'update-' + i" 
+                    tabindex="-1" 
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Task Details</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <i (click)="DeleteTask(task._id)" class="fa-solid fa-trash m-2 edit"></i>
+                          <i (click)="EditTask(task._id)" class="fa-solid fa-pen-to-square m-2 edit"></i>
+                          <label class="form-label">Task Name</label>
+                          <h2 class="card-title">{{task.task_name}}</h2>
+                          <label class="form-label">Task Description</label>
+                          <h5 class="card-subtitle mb-2">{{task.task_desc}}</h5>
+                          <div class="taskDates">
+                            <ul>
+                              <li>Task Start Date: {{formatDate(task.task_start)}}</li>
+                              <li>Task End Date: {{formatDate(task.task_end)}}</li>
+                              <li>Task Status: {{task.task_status}}</li>
+                            </ul>
+                          </div>
+                          <label class="form-label">Assigned to </label>
+                          <h4><i class="fa-solid fa-user me-3"></i>{{task.task_assigned_to}} </h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div> -->

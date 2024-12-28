@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div class="container d-flex align-items-center justify-content-center vh-100">
+    <div class="loginform col-lg-10 row">
+      <div class="col-lg-6 p-4 col-12">
+        <h2 class="text-center py-3">ADMIN/EMPLOYEE</h2>
+        <form (ngSubmit)="login()" class="mx-auto">
+            <div class="mb-3 form-check">
+              <input type="checkbox" [(ngModel)]="isEmployee" [ngModelOptions]="{standalone: true}" class="form-check-input">
+              <label class="form-check-label">Employee</label>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email address</label>
+              <input type="email" class="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input type="password" class="pass" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" class="form-control">
+            </div>
+            <a routerLink="/register">Create an account?</a>
+            <br><br>
+            <button type="submit" class="btn btn-dark">Login</button>
+        </form>
+      </div>
+      <!-- <div class="login col-lg-6 p-0 d-flex flex-column align-items-center justify-content-center text-white">
+        <h2>Welcome Back!</h2>
+        <p class="text-center">
+            Project Management made easy. Stay on top of deadlines and deliverables, with everything you need in one place.
+        </p>
+      </div> -->
+      <div class="login22 col-lg-6">
+        <img src="/assets/login222.jpg" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="container pt-5 mt-5 projectTable">
+  <div class="header">
+    <div>
+      <h4>Employees</h4>
+      <p><span routerLink="/dashbord">Dashboard  </span>  >  Employees</p>
+    </div>
+    <div class="create">
+      <button class="btn btn-dark my-3 create-btn" routerLink="/createEmployee">+ Create Employee</button>
+    </div>
+  </div>
+  <div data-aos="fade-up"  class="tableres p-3  table-responsive-lg">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table">
+      <thead>
+        <tr class="table-dark">
+          <th scope="col">S.no</th>
+          <th scope="col">Employee Name</th>
+          <th scope="col">Employee Email</th>
+          <th scope="col">Mobile No</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees; let i = index">
+          <td class="sno align-middle"  >{{ i + 1 }}</td>
+          <td class="align-middle">{{ employee.empName }}</td>
+          <td class="align-middle">{{ employee.empEmail }}</td>
+          <td class="align-middle mob">{{ employee.empPhoneno }}</td>
+          <td class="icons align-middle">
+            <i (click)="EditEmployee(employee._id)" class="fa-solid fa-pen-to-square edit"></i>
+            <i (click)="deleteEmployee(employee._id)" class="fa-solid fa-trash delete"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

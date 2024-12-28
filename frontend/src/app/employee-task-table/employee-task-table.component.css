@@ -1,0 +1,165 @@
+.body {
+    background-size: cover;
+}
+
+.projectTable {
+    width: 70rem;
+    font-weight: 500;
+    border-collapse: collapse;
+    /* overflow-x: auto; */
+}
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+.header p{
+    font-size: 14px;
+}
+.header span{
+    cursor: pointer;
+    color: #40d522;
+}
+.create {
+    display: flex;
+    justify-content: right;
+    padding: 0 20px;
+}
+
+.sno {
+    text-align: center !important;
+}
+
+.tableres {
+    border-radius: 5px;
+    box-shadow: 0 2px 8px 6px rgba(0, 0, 0,0.1);
+    /* border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    border-left: 1px solid rgba(255, 255, 255, .3);
+    border-top: 1px solid rgba(255, 255, 255, .3);
+    border-bottom: 1px solid rgb(0, 0, 0, 0.3);
+    border-right: 1px solid rgb(0, 0, 0, 0.3); */
+    background-color: white;
+    padding: 0 40px !important;
+    background-position: center;
+    background-size:cover;
+    width: 100%;
+    padding:25px 20px  !important;
+    color: gray;
+    font-size: 13px;
+}
+
+.projectTable table th, td {
+    text-align: left;
+    align-items: center;
+}
+
+.projectTable table th {
+    background-color:#40d522;
+    color: black !important;
+    font-size: 15px
+}
+
+.projectTable table {
+    background-color: transparent;
+    font-weight: 400;
+    border-bottom: transparent;
+}
+.status{
+    color: white;
+    font-size: 13px;
+    width: 100px;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+.projectTable table td {
+    background: transparent !important;
+    border-bottom: 1px solid #e0e0e0;
+    text-transform: capitalize;
+    font-size: 15px;
+    /* color: white; */
+}
+
+.projectTable table tr:hover {
+    transition: 0.5s;
+    color:black !important;
+    background-color: #f1f1f1 !important;
+}
+
+.create-btn {
+    background:#40d522;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+
+
+
+
+.projectTable .view {
+background-color: transparent;
+border: #40d522 2px solid;
+color: #40d522;
+padding: 5px 15px ;
+border-radius: 5px;
+}
+
+.view:hover {
+    box-shadow:inset 100px 0 0 0 #40d522;
+    color: white !important;
+    transition: 1s;
+}
+
+.icons {
+    display: flex;
+    /* justify-content: center; */
+    height: fit-content;
+}
+
+.icons i {
+    scale: 1.1;
+    margin:12px;
+    padding: 7px ;
+    text-shadow: none;
+    color: white;
+    border-radius: 5px;
+}
+.edit{
+    background-color:#40d522 ;
+    
+}
+
+.delete{
+    background-color: red !important;
+}
+.icons i:hover {
+    transition: 0.3s;
+    color: black !important;
+}
+
+.btn{
+    border: #40d522 2.5px solid;
+    color: #40d522;
+    font-weight: 500;
+}
+.btn:hover{
+    box-shadow: inset 150px 0 0 0  #40d522;
+    transition: 1s;
+    color: white;
+}
+/* 
+@media (max-width: 768px) {
+    .projectTable table {
+        font-weight: normal;
+    }
+    .icons i {
+        scale: 1.3;
+        margin: 15.8px 10px;
+    }
+} */
+
+
+

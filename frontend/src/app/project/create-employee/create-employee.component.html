@@ -1,0 +1,32 @@
+
+
+  <div class="row container-fluid p-5 my-5 ">
+    <div class="loginform col-lg-6 mx-auto">
+      <h4>Add Employee</h4>
+      <form (ngSubmit)="registerEmp()" method="post">
+        <h5 class="section-title">Employee Details</h5>
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input [(ngModel)]="empName" [ngModelOptions]="{ standalone: true }" name="name" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email address</label>
+          <input [(ngModel)]="empEmail" [ngModelOptions]="{ standalone: true }" name="email" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input [(ngModel)]="empPassword" [ngModelOptions]="{ standalone: true }" name="password" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Confirm password</label>
+          <input [(ngModel)]="empConfirmPassword" [ngModelOptions]="{ standalone: true }" name="confirmPassword" class="form-control" required />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Phone number</label>
+          <input [(ngModel)]="empPhoneno" [ngModelOptions]="{ standalone: true }" name="phoneno" class="form-control" required />
+        </div>
+        <button type="submit" class="btn btn-dark">Submit</button>
+      </form>
+    </div>
+  </div>
+  

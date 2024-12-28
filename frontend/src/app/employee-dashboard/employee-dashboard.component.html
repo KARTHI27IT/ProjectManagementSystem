@@ -1,0 +1,83 @@
+<!--FULL-->
+<div class="full row mt-5 pt-5">
+<!--MAIN-->
+<div class="main col-lg-8">
+  <h4 class="mx-4 head">Dashboard</h4>
+  <!--LIST-->
+  <div class="list row ms-lg-2">
+    
+    <div  class="col-lg-2 details2 project1">
+      <div>
+        <p>Name</p>
+        <h4>{{employeeDetails.empName}}</h4>
+      </div>
+      <div>
+        <!-- <i class="fa-solid fa-bars-progress mt-4 ms-5"></i> -->
+        <i class="fa-solid fa-circle-user mt-4 ms-5"></i>
+      </div>
+    </div>
+    <div  class="col-lg-2 details2 task1">
+      <div>
+        <p>Tasks</p>
+        <h4>{{this.tasks.length}}</h4>
+       
+      </div>
+      <div>
+        <i class="fa-solid fa-list-check mt-4 ms-5"></i>
+      </div>
+    </div>
+  </div>
+  <!--LIST END-->
+
+  <!--CHART-->
+  <div id="chart" class="p-4 ms-3">
+  <h4>Task Status</h4>
+  </div>
+  <!--CHART END-->
+
+  <!--TASK LIST-->
+  <div data-aos="fade-up"  class="main2 my-3 ms-3">
+  <h5 >Tasks</h5>
+  <div class="task" *ngFor="let task of tasks">
+    <div class="col-lg-4">
+      <p class="label">Task</p>
+      <h4>{{task.task_name}}</h4>
+    </div>
+    <div class="col-lg-3">
+      <p>Status</p>
+      <h4  class="status">{{task.task_status}}</h4>
+    </div>
+    <div class="col-lg-3">
+      <p class="label">Project Id</p>
+      <h4>{{task.project_id}}</h4>
+    </div>
+  </div>
+  </div>
+  <!--TASK LIST END-->
+</div>
+<!--MAIN END-->
+
+<!--RIGHT-->
+<div class="right col-lg-4 mt-lg-5">
+  <div id="chart1">
+    <h4>Tasks Count</h4>
+  </div>
+  <div class="employeeDetails">
+    <h4 class="head">Profile Details</h4>
+    <div>
+      <p>Name:</p>
+      <h6>{{employeeDetails.empName}}</h6>
+      <p >Email:</p>
+      <h6>{{employeeDetails.empEmail}}</h6>
+       <p>Phone No:</p>
+       <h6>{{employeeDetails.empPhoneno}}</h6>
+       <p>Assigned Tasks:</p>
+       <h6>{{assignedTasks.length}}</h6>
+    </div>
+    <button routerLink="/taskTable"> View tasks</button>
+  </div>
+</div>
+<!--RIGHT END-->
+
+</div>
+<!--FULL END-->

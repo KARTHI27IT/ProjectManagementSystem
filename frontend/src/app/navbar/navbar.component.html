@@ -1,0 +1,88 @@
+<nav data-aos="fade-down" data-aos-easing="linear" data-aos-duration="1000" class="navbar navbar-expand-lg bg-body-tertiary bg-dark">
+  <div class="container-fluid">
+      <div class="logo my-2">
+          <img src="assets/logo3.png" class="img-fluid mx-2" alt="Logo">
+          <h2 class="text-center">Project Management System</h2>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  
+          <ul class="navbar-nav me-0 ms-auto">
+              <ng-container *ngIf="isLoggedIn;then loggedIn else loggedOut">
+              </ng-container>
+
+              <ng-template #loggedIn>
+                  <ng-container *ngIf="!isEmployee else employee">
+                   
+
+                    <li class="nav-item d-lg-block d-none icon">
+                        <a class="nav-link active" aria-current="page" routerLink="/dashbord"><i class="fa-solid fa-house pe-2"></i></a>
+                    </li>
+                    <li class="nav-item d-lg-block d-none icon">
+                        <a class="nav-link active" aria-current="page" routerLink="/projectTable"><i class="fa-solid fa-bars-progress"></i></a>
+                    </li>
+                    <li class="nav-item d-lg-block d-none icon">
+                        <a class="nav-link active" aria-current="page" routerLink="/employeeTable"><i class="fa-solid fa-users"></i></a>
+                    </li>
+                    <li class="nav-item d-lg-block d-none icon">
+                        <a class="nav-link active" aria-current="page" routerLink="/employeeFiles"><i class="fa-solid fa-folder pe-2"></i></a>
+                    </li>
+
+
+                      <li class="nav-item  d-lg-none">
+                          <a class="nav-link active button" aria-current="page" routerLink="/dashbord"><i class="fa-solid fa-house pe-2"></i> Dashboard</a>
+                      </li>
+                      <li class="nav-item d-block d-lg-none">
+                          <a class="nav-link active button" aria-current="page" routerLink="/projectTable"><i class="fa-solid fa-folder pe-2"></i>Projects</a>
+                      </li>
+                      <li class="nav-item d-block d-lg-none">
+                          <a class="nav-link active button" aria-current="page" routerLink="/employeeTable"><i class="fa-solid fa-users-rectangle pe-2"></i>Employees</a>
+                      </li>
+                      <li class="nav-item d-block d-lg-none">
+                        <a class="nav-link active button" aria-current="page" routerLink="/employeeFiles"><i class="fa-solid fa-folder pe-2"></i>Files</a>
+                    </li>
+                  </ng-container>
+                  <ng-template #employee>
+
+                    <!--ICONS-->
+                    <li class="nav-item d-lg-block d-none icon">
+                        <a class="nav-link active" aria-current="page" routerLink="/employeeDashboard"><i class="fa-solid fa-house pe-2"></i></a>
+                    </li>
+                    <li class="nav-item icon d-lg-block d-none">
+                        <a class="nav-link active " aria-current="page" routerLink="/taskTable"><i class="fa-solid fa-list-check"></i></a>
+                    </li>
+                    <li class="nav-item d-lg-block d-none icon">
+                        <a class="nav-link active" aria-current="page" routerLink="employeeFiles" ><i class="fa-solid fa-folder pe-2"></i></a>
+                    </li>
+                    <!--TEXTS-->
+                      <li class="nav-item d-block d-lg-none">
+                          <a class="nav-link active button" aria-current="page" routerLink="/employeeDashboard"><i class="fa-solid fa-house pe-2"></i>Dashboard</a>
+                      </li>
+                      <li class="nav-item d-block d-lg-none">
+                          <a class="nav-link active button" aria-current="page" routerLink="/taskTable"><i class="fa-solid fa-list-check pe-2"></i>Tasks</a>
+                      </li>
+                      <li class="nav-item d-block d-lg-none">
+                        <a class="nav-link active button" aria-current="page" routerLink="employeeFiles" ><i class="fa-solid fa-folder pe-2"></i>Files</a>
+                    </li>
+                  </ng-template>
+
+                  <li class="nav-item">
+                      <a class="nav-link active button" aria-current="page" (click)="logout()"><i class="fa-solid fa-lock-open"></i> Logout</a>
+                  </li>
+              </ng-template>
+
+              <ng-template #loggedOut>
+                  <li class="nav-item">
+                      <a class="nav-link active button" aria-current="page" routerLink="/login"><i class="fa-solid fa-lock pe-2"></i>Login</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link active button" aria-current="page" routerLink="/register"><i class="fa-solid fa-registered pe-2"></i>Register</a>
+                  </li>
+              </ng-template>
+          </ul>
+
+      </div>
+  </div>
+</nav>

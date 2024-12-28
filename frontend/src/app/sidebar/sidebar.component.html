@@ -1,0 +1,84 @@
+<!-- Side-Nav -->
+<div data-aos="fade-right"
+  data-aos-offset="300"
+  data-aos-easing="ease-in-sine" 
+  class="side-navbar active-nav d-flex justify-content-between flex-wrap flex-column" 
+  id="sidebar">
+
+  <ul class="nav flex-column text-white">
+    <!-- Check if user is logged in -->
+    <ng-container *ngIf="isLoggedIn; else loggedOut">
+      
+      <!-- Role-Based Menu -->
+      <ng-container *ngIf="isEmployee; then employee else admin"></ng-container>
+      
+      <!-- Employee Menu -->
+      <ng-template #employee>
+        <li class="nav-link" routerLinkActive="active-link">
+          <a routerLink="/employeeDashboard">
+            <i class="fa-solid fa-house"></i>
+            <span class="mx-2">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-link" routerLinkActive="active-link">
+          <a routerLink="/taskTable">
+            <i class="fa-solid fa-list-check"></i>
+            <span class="mx-2">Tasks</span>
+          </a>
+        </li>
+        <li class="nav-link" routerLinkActive="active-link">
+          <a routerLink="/employeeFiles">
+            <i class="fa-solid fa-folder"></i>
+            <span class="mx-2">Files</span>
+          </a>
+        </li>
+      </ng-template>
+
+      <!-- Admin Menu -->
+      <ng-template #admin>
+        <li class="nav-link" routerLinkActive="active-link">
+          <a routerLink="/dashbord">
+            <i class="fa-solid fa-house"></i>
+            <span class="mx-2">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-link" routerLinkActive="active-link">
+          <a routerLink="/projectTable">
+            <i class="fa-solid fa-bars-progress"></i>
+            <span class="mx-2">Projects</span>
+          </a>
+        </li>
+        <li class="nav-link" routerLinkActive="active-link">
+          <a routerLink="/employeeTable">
+            <i class="fa-solid fa-users-rectangle"></i>
+            <span class="mx-2">Employees</span>
+          </a>
+        </li>
+        <li class="nav-link" routerLinkActive="active-link">
+          <a routerLink="/employeeFiles">
+            <i class="fa-solid fa-folder"></i>
+            <span class="mx-2">Files</span>
+          </a>
+        </li>
+      </ng-template>
+
+    </ng-container>
+
+    <!-- Logged Out Menu -->
+    <ng-template #loggedOut>
+      <li class="nav-link" routerLinkActive="active-link">
+        <a routerLink="/login">
+          <i class="fa-solid fa-lock"></i>
+          <span class="mx-2">Login</span>
+        </a>
+      </li>
+      <li class="nav-link" routerLinkActive="active-link">
+        <a routerLink="/register">
+          <i class="fa-solid fa-registered"></i>
+          <span class="mx-2">Register</span>
+        </a>
+      </li>
+    </ng-template>
+
+  </ul>
+</div>

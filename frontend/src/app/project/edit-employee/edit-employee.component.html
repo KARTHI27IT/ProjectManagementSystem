@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <div class="loginform container pt-5 mt-5 col-lg-6">
+    <h4 class="text-center">Edit Employee</h4>
+    <form (ngSubmit)="EditEmployee()" method="post">
+      <div class="mb-3">
+        <label class="form-label"><i class="fa-solid fa-user"></i>Name</label>
+        <input
+          [(ngModel)]="employee.empName"
+          [ngModelOptions]="{ standalone: true }"
+          name="name"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label"><i class="fa-solid fa-envelope"></i>Email address</label>
+        <input
+          [(ngModel)]="employee.empEmail"
+          [ngModelOptions]="{ standalone: true }"
+          name="email"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label"><i class="fa-solid fa-lock"></i>Password</label>
+        <input
+          [(ngModel)]="employee.empPassword"
+          [ngModelOptions]="{ standalone: true }"
+          name="password"
+          class="form-control"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label class="form-label"><i class="fa-solid fa-mobile"></i>Phone number</label>
+        <input
+          [(ngModel)]="employee.empPhoneno"
+          [ngModelOptions]="{ standalone: true }"
+          name="phoneno"
+          class="form-control"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-dark">Update</button>
+    </form>
+  </div>
+  
+</div>

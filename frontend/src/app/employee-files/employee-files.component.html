@@ -1,0 +1,35 @@
+<div class="container pt-5 mt-5 projectTable">
+  <div class="header">
+    <div>
+      <h4>Files</h4>
+      <p><span routerLink="/dashboard">Dashboard</span> > Files</p>
+    </div>
+  </div>
+  <div data-aos="fade-up" class="tableres p-3 table-responsive-lg">
+    <table class="table">
+      <thead>
+        <tr class="table-dark">
+          <th scope="col">S.no</th>
+          <th scope="col">File Name</th>
+          <th scope="col">File Path</th>
+          <th *ngIf="!isEmployee">Uploaded by</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let file of files; let i = index">
+          <td class="sno align-middle">{{ i + 1 }}</td>
+          <td class="align-middle">{{ file.fileName }}</td>
+          <td class="align-middle">{{ file.filePath }}</td>
+          <td *ngIf="!isEmployee" class="align-middle">{{file.uploadedBy}}</td>
+          <td class=" align-middle d-flex">
+            <button (click)="downloadFile(file.filePath, file.fileName)" class="btn download">
+              <i class="fa-solid fa-download"></i>
+            </button>
+            <button (click)="deleteFile(file)" class="btn delete"><i class="fa-solid fa-trash"></i></button>  
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

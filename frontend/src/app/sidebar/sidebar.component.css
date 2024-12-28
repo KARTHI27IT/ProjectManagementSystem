@@ -1,0 +1,50 @@
+.side-navbar {
+  height: 100%;
+  position: fixed;
+  background-color: white;
+  padding-top: 100px !important;
+  width: 253px;
+}
+
+.side-navbar i {
+  color: gray !important;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.side-navbar span {
+  color: rgba(0, 0, 0,0.7) !important;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.side-navbar li {
+  margin: 10px;
+  border-radius: 10px;
+  padding: 10px auto;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+.side-navbar li a {
+  text-decoration: none;
+}
+
+.side-navbar li:hover {
+  background-color: #40d522;
+}
+
+.side-navbar li:hover span {
+  color: white !important;
+}
+
+.active-link {
+  background-color: #40d522 !important;
+  color: white !important;
+  border-radius: 10px;
+}
+
+.active-link span {
+  color: white !important;
+}

@@ -1,0 +1,168 @@
+<!-- Button trigger modal -->
+<button type="button" id="btn" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <i class="fa-solid fa-user-tie"></i>
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Admin details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="col-lg-6">
+          <div class="details111">
+            <p><strong>Name:</strong> {{ adminDetails.name }}</p>
+            <p><strong>Email:</strong> {{ adminDetails.email }}</p>
+            <p><strong>Phone no:</strong> {{ adminDetails.phoneno }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="main row mt-5 pt-5">
+
+  <div class="col-lg-8">
+  <div class="top container">
+    <h4 class="my-3">Dashboard</h4>
+    <div class="list row">
+      <div routerLink="/projectTable" class="details2 project1">
+        <div>
+          <h4>{{ adminDetails.projects.length }}</h4>
+          <p>Projects</p>
+        </div>
+        <div>
+          <i class="fa-solid fa-bars-progress mt-4 ms-5"></i>
+        </div>
+      </div>
+  
+      <div routerLink="/employeeTable" class="details2 employee1">
+        <div>
+          <h4>{{ adminDetails.employees.length }}</h4>
+          <p>Employees</p>
+        </div>
+        <div>
+          <i class="fa-solid fa-users mt-4 ms-5"></i>
+        </div>
+      </div>
+  
+      <div routerLink="/projectTable" class="details2 task1">
+        <div>
+          <h4>{{ tasknumber }}</h4>
+          <p>Tasks</p>
+        </div>
+        <div>
+          <i class="fa-solid fa-list-check mt-4 ms-5"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="main2 my-5">
+    <h5>Tasks</h5>
+    <div class="task" *ngFor="let task of tasks">
+      <div class="col-lg-3">
+        <p class="label">Task</p>
+        <h4>{{task.task_name}}</h4>
+      </div>
+      <div class="col-lg-2">
+        <p>Status</p>
+        <h4  class="status">{{task.task_status}}</h4>
+      </div>
+      <div class="col-lg-4">
+        <p class="label">Project Id</p>
+        <h4>{{task.project_id}}</h4>
+      </div>
+      <div class="col-lg-3">
+        <p class="label">Assigned to</p>
+        <h4 class="emp">{{task.task_assigned_to}}</h4>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Details Section -->
+  <div class="dashboard overflow-auto"  >
+    <div class="header2">
+      <h4>Projects</h4>
+    </div>
+    <div class="dash">
+      
+      <!-- Todo Section -->
+      <div class="todo overflow-auto ">
+        <h5 class="head">TO DO</h5>
+        <div class="noproj" *ngIf="todoProjects.length === 0">
+          <p>No projects created</p>
+        </div>
+        <div *ngFor="let project of todoProjects">
+          <div [routerLink]="['/project', project._id]" class="project">
+            <h6>{{ project.project_name }}</h6>
+            <p>{{ project.project_status }}</p>
+            <i class="fa-solid fa-circle-info"></i>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Doing Section -->
+      <div class="doing overflow-auto ">
+        <h5 class="head">IN PROGRESS</h5>
+        <div class="noproj" *ngIf="inProgressProjects.length === 0">
+          <p>No projects in progress</p>
+        </div>
+        <div *ngFor="let project of inProgressProjects">
+          <div [routerLink]="['/project', project._id]" class="project">
+            <h6>{{ project.project_name }}</h6>
+            <p>{{ project.project_status }}</p>
+            <i class="fa-solid fa-circle-info"></i>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Done Section -->
+      <div class="done overflow-auto">
+        <h5 class="head">COMPLETED</h5>
+        <div class="noproj" *ngIf="completedProjects.length === 0">
+          <p>No projects completed</p>
+        </div>
+        <div class="proj" *ngFor="let project of completedProjects">
+          <div [routerLink]="['/project', project._id]" class="project">
+            <h6>{{ project.project_name }}</h6>
+            <p>{{ project.project_status }}</p>
+            <i class="fa-solid fa-circle-info"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<div class="right col-lg-4 ">
+<div id="chart1" class="mt-5 mb-2" >
+  <h5>Tasks Completion</h5>
+</div>
+<div id="chart" class="mt-5 mb-2">
+  <h5>Projects Status</h5>
+</div>
+</div>
+</div>
+
+
